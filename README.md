@@ -1,0 +1,1 @@
+Project build with a DDD (tactical design) approach.
