@@ -27,10 +27,3 @@ export class Customer {
     }
 
 }
-
-const idNumber = new CustomerIdNumber('1234');
-const firstName = new CustomerFirstName('sebastian');
-const lastName = new CustomerLastName('hernandez');
-const phoneNumber = new CustomerPhoneNumber('5555555');
-
-const customer = Customer.create(idNumber, firstName, lastName, phoneNumber);
