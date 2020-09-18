@@ -6,6 +6,11 @@ import {CustomerFirstName} from "../../../../src/core/customer/domain/CustomerFi
 import {CustomerLastName} from "../../../../src/core/customer/domain/CustomerLastName";
 import {CustomerPhoneNumber} from "../../../../src/core/customer/domain/CustomerPhoneNumber";
 import {InMemoryCustomerRepository} from "../../../../src/core/customer/infrastructure/InMemoryCustomerRepository";
+import {CustomerIdNumberMother} from "../domain/CustomerIdNumberMother";
+import {CustomerFirstNameMother} from "../domain/CustomerFirstNameMother";
+import {CustomerLastNameMother} from "../domain/CustomerLastNameMother";
+import {CustomerPhoneNumberMother} from "../domain/CustomerPhoneNumberMother";
+import {CustomerIdMother} from "../domain/CustomerIdMother";
 
 describe('CreateCustomer should', () => {
 
@@ -13,11 +18,11 @@ describe('CreateCustomer should', () => {
     let createCustomer: CreateCustomer;
 
     test('create a new customer', async () => {
-        const id = new CustomerId('11ecb3a8-ce83-4acf-9d8d-8bc24fdd7427');
-        const idNumber = new CustomerIdNumber('1037629138');
-        const firstName = new CustomerFirstName('Sebastian');
-        const lastName = new CustomerLastName('Hernandez');
-        const phoneNumber = new CustomerPhoneNumber('3103769786');
+        const id = CustomerIdMother.random();
+        const idNumber = CustomerIdNumberMother.random();
+        const firstName = CustomerFirstNameMother.random();
+        const lastName = CustomerLastNameMother.random();
+        const phoneNumber = CustomerPhoneNumberMother.random();
 
         given_a_use_case();
 
