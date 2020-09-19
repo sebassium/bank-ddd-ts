@@ -29,7 +29,7 @@ describe('CreateCustomer should', () => {
 
         await when_a_customer_is_created(id, idNumber, firstName, lastName, phoneNumber);
 
-        await then_the_customer_has_the_correct_data(id, idNumber, firstName, lastName, phoneNumber)
+        await then_customer_has_the_correct_data(id, idNumber, firstName, lastName, phoneNumber)
     });
 
     function given_a_use_case() {
@@ -41,7 +41,7 @@ describe('CreateCustomer should', () => {
         await createCustomer.execute(id, idNumber, firstName, lastName, phoneNumber);
     }
 
-    async function then_the_customer_has_the_correct_data(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+    async function then_customer_has_the_correct_data(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
         const customer = await customerRepository.findById(id);
 
         expect(customer).not.toBeNull()
