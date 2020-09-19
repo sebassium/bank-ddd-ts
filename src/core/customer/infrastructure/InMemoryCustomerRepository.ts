@@ -4,11 +4,14 @@ import {CustomerId} from "../domain/CustomerId";
 
 export class InMemoryCustomerRepository implements CustomerRepository {
 
-    private _database = new Map();
+    private _database = new Map<string, Customer>();
 
     findById(customerId: CustomerId): Promise<Customer> {
-        const consumer = this._database.get(customerId.value);
-        return Promise.resolve(consumer);
+        const customer = this._database.get(customerId.value);
+        if (!customer) {
+            throw new Error('Customer does not exist');
+        }
+        return Promise.resolve(customer);
     }
 
     save(customer: Customer): Promise<void> {

@@ -6,7 +6,7 @@ export abstract class ValueObject<V extends any> {
         this._value = value;
     }
 
-    get value() {
+    get value(): V {
         return this._value;
     }
 

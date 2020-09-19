@@ -3,14 +3,14 @@ import {ValueObject} from "./ValueObject";
 
 export class UuidValueObject extends ValueObject<string> {
 
-    constructor(value: string) {
-        super(value);
-        this.isValidUuid(value);
+    constructor(id: string) {
+        super(id);
+        UuidValueObject.isValidUuid(id);
     }
 
-    private isValidUuid(id: string) {
+    static isValidUuid(id: string) {
         if (!isUUID(id, 4)) {
-            console.log("Error");
+            throw new Error('Invalid UUID');
         }
     }
 

@@ -20,27 +20,27 @@ export class Customer {
         this._phoneNumber = phoneNumber;
     }
 
-    static create(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+    static create(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber): Customer {
         return new Customer(id, idNumber, firstName, lastName, phoneNumber);
     }
 
-    get id() {
+    get id(): CustomerId {
         return this._id;
     }
 
-    get idNumber() {
+    get idNumber(): CustomerIdNumber {
         return this._idNumber;
     }
 
-    get firstName() {
+    get firstName(): CustomerFirstName {
         return this._firstName;
     }
 
-    get lastName() {
+    get lastName(): CustomerLastName {
         return this._lastName;
     }
 
-    get phoneNumber() {
+    get phoneNumber(): CustomerPhoneNumber {
         return this._phoneNumber;
     }
 

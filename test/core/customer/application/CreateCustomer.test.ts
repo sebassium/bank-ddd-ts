@@ -18,6 +18,7 @@ describe('CreateCustomer should', () => {
     let createCustomer: CreateCustomer;
 
     test('create a new customer', async () => {
+
         const id = CustomerIdMother.random();
         const idNumber = CustomerIdNumberMother.random();
         const firstName = CustomerFirstNameMother.random();
@@ -44,11 +45,11 @@ describe('CreateCustomer should', () => {
         const customer = await customerRepository.findById(id);
 
         expect(customer).not.toBeNull()
-        expect(customer.id).toBe(id);
-        expect(customer.idNumber).toBe(idNumber);
-        expect(customer.firstName).toBe(firstName);
-        expect(customer.lastName).toBe(lastName);
-        expect(customer.phoneNumber).toBe(phoneNumber);
+        expect(customer.id).toEqual(id);
+        expect(customer.idNumber).toEqual(idNumber);
+        expect(customer.firstName).toEqual(firstName);
+        expect(customer.lastName).toEqual(lastName);
+        expect(customer.phoneNumber).toEqual(phoneNumber);
     }
 
 });
