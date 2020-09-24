@@ -11,7 +11,6 @@ export class GetCustomerData {
 
     async execute(id: CustomerId): Promise<CustomerData> {
         const customer = await this._customerRepository.findById(id);
-
         return {
             id: customer.id.value,
             idNumber: customer.idNumber.value,
@@ -19,7 +18,6 @@ export class GetCustomerData {
             lastName: customer.lastName.value,
             phoneNumber: customer.phoneNumber.value
         }
-
     }
 
 }
