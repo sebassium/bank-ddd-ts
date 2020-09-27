@@ -17,13 +17,5 @@ export class CreateCustomer {
     async execute(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
         const customer = Customer.create(id, idNumber, firstName, lastName, phoneNumber);
         await this._customerRepository.save(customer);
-        //TODO: How should I return the created user?
-        return {
-            id: customer.id.value,
-            idNumber: customer.idNumber.value,
-            firstName: customer.firstName.value,
-            lastName: customer.lastName.value,
-            phoneNumber: customer.phoneNumber.value
-        }
     }
 }

@@ -1,5 +1,5 @@
 import {CreateCustomer} from "../../../core/customer/application/CreateCustomer";
-import {CustomerIdMother} from "../../../../test/core/customer/domain/CustomerIdMother";
+import {CustomerId} from "../../../core/customer/domain/CustomerId";
 import {CustomerIdNumber} from "../../../core/customer/domain/CustomerIdNumber";
 import {CustomerFirstName} from "../../../core/customer/domain/CustomerFirstName";
 import {CustomerLastName} from "../../../core/customer/domain/CustomerLastName";
@@ -9,8 +9,8 @@ export class CustomerCreateService {
 
     constructor(private createCustomer: CreateCustomer) {}
 
-    run(body: Body) {
-        const id = CustomerIdMother.random()
+    run(body: Body): Promise<void> {
+        const id = new CustomerId(body.id);
         const idNumber = new CustomerIdNumber(body.idNumber);
         const firstName = new CustomerFirstName(body.firstName);
         const lastName = new CustomerLastName(body.lastName);
@@ -22,6 +22,7 @@ export class CustomerCreateService {
 }
 
 export type Body = {
+    id: string,
     idNumber: string,
     firstName: string,
     lastName: string,
