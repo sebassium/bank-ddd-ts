@@ -1,15 +1,25 @@
 import {Request, Response} from "express";
 import {GetCustomerData} from "../../../core/customer/application/GetCustomerData";
-import {CustomerGetDataService} from "../../services/customer/CustomerGetDataService";
+import {CustomerId} from "../../../core/customer/domain/CustomerId";
 
-const get = async (req: Request, res: Response) => {
+export class CustomerGetController {
 
-    const { body, customerRepository } = req;
+    constructor(private getCustomerData: GetCustomerData) {}
+
+    run(body: Body) {
+        const customerId = new CustomerId(body.customerId);
+        return this.getCustomerData.execute(customerId);
+    }
+
+}
+
+export type Body = {
+    customerId: string
+}
+
+const get = async ({ customerGetController, body}: Request, res: Response) => {
     try {
-        const getCustomerData = new GetCustomerData(customerRepository);
-        const customerGetDataService = new CustomerGetDataService(getCustomerData);
-
-        const result = await customerGetDataService.run(body);
+        const result = await customerGetController.run(body);
         res.status(200).json(result);
     } catch (e) {
         res.status(500).send(e.message)
@@ -18,3 +28,4 @@ const get = async (req: Request, res: Response) => {
 };
 
 export default get;
+

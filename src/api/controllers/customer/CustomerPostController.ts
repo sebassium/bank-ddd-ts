@@ -1,15 +1,40 @@
 import {Request, Response} from "express";
-import {CustomerCreateService} from "../../services/customer/CustomerCreateService";
 import {CreateCustomer} from "../../../core/customer/application/CreateCustomer";
+import {CustomerId} from "../../../core/customer/domain/CustomerId";
+import {CustomerIdNumber} from "../../../core/customer/domain/CustomerIdNumber";
+import {CustomerFirstName} from "../../../core/customer/domain/CustomerFirstName";
+import {CustomerLastName} from "../../../core/customer/domain/CustomerLastName";
+import {CustomerPhoneNumber} from "../../../core/customer/domain/CustomerPhoneNumber";
 
-const create = async (req: Request, res: Response) => {
+export class CustomerPostController {
 
-    const { body, customerRepository } = req;
+    constructor(private createCustomer: CreateCustomer) {}
+
+    run(body: Body): Promise<void> {
+        const customerId = new CustomerId(body.customerId);
+        const idNumber = new CustomerIdNumber(body.idNumber);
+        const firstName = new CustomerFirstName(body.firstName);
+        const lastName = new CustomerLastName(body.lastName);
+        const phoneNumber = new CustomerPhoneNumber(body.phoneNumber);
+
+        return this.createCustomer.execute(customerId, idNumber, firstName, lastName, phoneNumber)
+    }
+
+}
+
+export type Body = {
+    customerId: string,
+    idNumber: string,
+    firstName: string,
+    lastName: string,
+    phoneNumber: string
+}
+
+
+
+const create = async ({ customerPostController, body }: Request, res: Response) => {
     try {
-        const createCustomer = new CreateCustomer(customerRepository);
-        const customerCreateService = new CustomerCreateService(createCustomer)
-
-        const result = await customerCreateService.run(body);
+        const result = await customerPostController.run(body);
         res.status(200).json(result);
     } catch (e) {
         res.status(500).send('Server error')

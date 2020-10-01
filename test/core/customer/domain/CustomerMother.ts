@@ -7,9 +7,9 @@ import {CustomerPhoneNumberMother} from "./CustomerPhoneNumberMother";
 
 export class CustomerMother {
 
-    static withId(id: CustomerId) {
+    static withCustomerId(customerId: CustomerId) {
         return Customer.create(
-            id,
+            customerId,
             CustomerIdNumberMother.random(),
             CustomerFirstNameMother.random(),
             CustomerLastNameMother.random(),

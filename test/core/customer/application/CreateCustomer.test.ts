@@ -19,7 +19,7 @@ describe('CreateCustomer should', () => {
 
     test('create a new customer', async () => {
 
-        const id = CustomerIdMother.random();
+        const customerId = CustomerIdMother.random();
         const idNumber = CustomerIdNumberMother.random();
         const firstName = CustomerFirstNameMother.random();
         const lastName = CustomerLastNameMother.random();
@@ -27,9 +27,9 @@ describe('CreateCustomer should', () => {
 
         given_a_use_case();
 
-        await when_a_customer_is_created(id, idNumber, firstName, lastName, phoneNumber);
+        await when_a_customer_is_created(customerId, idNumber, firstName, lastName, phoneNumber);
 
-        await then_customer_has_the_correct_data(id, idNumber, firstName, lastName, phoneNumber)
+        await then_customer_has_the_correct_data(customerId, idNumber, firstName, lastName, phoneNumber)
     });
 
     function given_a_use_case() {
@@ -37,15 +37,15 @@ describe('CreateCustomer should', () => {
         createCustomer = new CreateCustomer(customerRepository);
     }
 
-    async function when_a_customer_is_created(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
-        await createCustomer.execute(id, idNumber, firstName, lastName, phoneNumber);
+    async function when_a_customer_is_created(customerId: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+        await createCustomer.execute(customerId, idNumber, firstName, lastName, phoneNumber);
     }
 
-    async function then_customer_has_the_correct_data(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
-        const customer = await customerRepository.findById(id);
+    async function then_customer_has_the_correct_data(customerId: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+        const customer = await customerRepository.findById(customerId);
 
         expect(customer).not.toBeNull()
-        expect(customer.id).toEqual(id);
+        expect(customer.customerId).toEqual(customerId);
         expect(customer.idNumber).toEqual(idNumber);
         expect(customer.firstName).toEqual(firstName);
         expect(customer.lastName).toEqual(lastName);

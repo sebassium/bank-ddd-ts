@@ -6,8 +6,8 @@ export class InMemoryCustomerRepository implements CustomerRepository {
 
     private _database = new Map<string, Customer>();
 
-    findById(id: CustomerId): Promise<Customer> {
-        const customer = this._database.get(id.value);
+    findById(customerId: CustomerId): Promise<Customer> {
+        const customer = this._database.get(customerId.value);
         if (!customer) {
             throw new Error('Customer does not exist');
         }
@@ -15,7 +15,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     }
 
     save(customer: Customer): Promise<void> {
-        this._database.set(customer.id.value, customer);
+        this._database.set(customer.customerId.value, customer);
         return Promise.resolve();
     }
 

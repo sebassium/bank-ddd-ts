@@ -9,10 +9,10 @@ export class GetCustomerData {
         this._customerRepository = customerRepository;
     }
 
-    async execute(id: CustomerId): Promise<CustomerData> {
-        const customer = await this._customerRepository.findById(id);
+    async execute(customerId: CustomerId): Promise<CustomerData> {
+        const customer = await this._customerRepository.findById(customerId);
         return {
-            id: customer.id.value,
+            customerId: customer.customerId.value,
             idNumber: customer.idNumber.value,
             firstName: customer.firstName.value,
             lastName: customer.lastName.value,
@@ -23,7 +23,7 @@ export class GetCustomerData {
 }
 
 export type CustomerData = {
-    id: string,
+    customerId: string,
     idNumber: string,
     firstName: string,
     lastName: string,

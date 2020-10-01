@@ -6,26 +6,26 @@ import {CustomerPhoneNumber} from "./CustomerPhoneNumber";
 
 export class Customer {
 
-    private readonly _id: CustomerId;
+    private readonly _customerId: CustomerId;
     private readonly _idNumber: CustomerIdNumber;
     private readonly _firstName: CustomerFirstName;
     private readonly _lastName: CustomerLastName;
     private readonly _phoneNumber: CustomerPhoneNumber;
 
-    constructor(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
-        this._id = id;
+    constructor(customerId: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+        this._customerId = customerId;
         this._idNumber = idNumber;
         this._firstName = firstName;
         this._lastName = lastName;
         this._phoneNumber = phoneNumber;
     }
 
-    static create(id: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber): Customer {
-        return new Customer(id, idNumber, firstName, lastName, phoneNumber);
+    static create(customerId: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber): Customer {
+        return new Customer(customerId, idNumber, firstName, lastName, phoneNumber);
     }
 
-    get id(): CustomerId {
-        return this._id;
+    get customerId(): CustomerId {
+        return this._customerId;
     }
 
     get idNumber(): CustomerIdNumber {

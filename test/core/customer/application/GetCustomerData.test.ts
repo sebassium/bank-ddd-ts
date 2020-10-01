@@ -15,13 +15,13 @@ describe('GetCustomerData should', () => {
 
     test('return customer data', async () => {
 
-        const id = CustomerIdMother.random();
-        customer = CustomerMother.withId(id);
+        const customerId = CustomerIdMother.random();
+        customer = CustomerMother.withCustomerId(customerId);
 
         given_a_use_case();
         await given_a_saved_customer();
 
-        await when_getting_customer_data(id);
+        await when_getting_customer_data(customerId);
 
         await then_returned_customer_data_is_correct();
 
@@ -36,13 +36,13 @@ describe('GetCustomerData should', () => {
         await customerRepository.save(customer);
     }
 
-    async function when_getting_customer_data(id: CustomerId) {
-        customerData = await getCustomerData.execute(id)
+    async function when_getting_customer_data(customerId: CustomerId) {
+        customerData = await getCustomerData.execute(customerId)
     }
 
     async function then_returned_customer_data_is_correct() {
         expect(customerData).not.toBeNull();
-        expect(customerData.id).toEqual(customer.id.value);
+        expect(customerData.customerId).toEqual(customer.customerId.value);
         expect(customerData.idNumber).toEqual(customer.idNumber.value);
         expect(customerData.firstName).toEqual(customer.firstName.value);
         expect(customerData.lastName).toEqual(customer.lastName.value);
