@@ -1,6 +1,6 @@
 import {CustomerRepository} from "../domain/CustomerRepository";
 import {CustomerId} from "../domain/CustomerId";
-import {CustomerIdNumber} from "../domain/CustomerIdNumber";
+import {CustomerPersonalNumber} from "../domain/CustomerPersonalNumber";
 import {CustomerFirstName} from "../domain/CustomerFirstName";
 import {CustomerLastName} from "../domain/CustomerLastName";
 import {CustomerPhoneNumber} from "../domain/CustomerPhoneNumber";
@@ -14,8 +14,8 @@ export class CreateCustomer {
         this._customerRepository = customerRepository;
     }
 
-    async execute(customerId: CustomerId, idNumber: CustomerIdNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
-        const customer = Customer.create(customerId, idNumber, firstName, lastName, phoneNumber);
+    async execute(customerId: CustomerId, personalNumber: CustomerPersonalNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+        const customer = Customer.create(customerId, personalNumber, firstName, lastName, phoneNumber);
         await this._customerRepository.save(customer);
     }
 }

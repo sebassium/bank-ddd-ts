@@ -13,7 +13,7 @@ export class GetCustomerData {
         const customer = await this._customerRepository.findById(customerId);
         return {
             customerId: customer.customerId.value,
-            idNumber: customer.idNumber.value,
+            personalNumber: customer.personalNumber.value,
             firstName: customer.firstName.value,
             lastName: customer.lastName.value,
             phoneNumber: customer.phoneNumber.value
@@ -24,7 +24,7 @@ export class GetCustomerData {
 
 export type CustomerData = {
     customerId: string,
-    idNumber: string,
+    personalNumber: string,
     firstName: string,
     lastName: string,
     phoneNumber: string

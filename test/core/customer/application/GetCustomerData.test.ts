@@ -43,7 +43,7 @@ describe('GetCustomerData should', () => {
     async function then_returned_customer_data_is_correct() {
         expect(customerData).not.toBeNull();
         expect(customerData.customerId).toEqual(customer.customerId.value);
-        expect(customerData.idNumber).toEqual(customer.idNumber.value);
+        expect(customerData.personalNumber).toEqual(customer.personalNumber.value);
         expect(customerData.firstName).toEqual(customer.firstName.value);
         expect(customerData.lastName).toEqual(customer.lastName.value);
         expect(customerData.phoneNumber).toEqual(customer.phoneNumber.value);

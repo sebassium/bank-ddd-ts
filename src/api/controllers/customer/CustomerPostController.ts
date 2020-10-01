@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {CreateCustomer} from "../../../core/customer/application/CreateCustomer";
 import {CustomerId} from "../../../core/customer/domain/CustomerId";
-import {CustomerIdNumber} from "../../../core/customer/domain/CustomerIdNumber";
+import {CustomerPersonalNumber} from "../../../core/customer/domain/CustomerPersonalNumber";
 import {CustomerFirstName} from "../../../core/customer/domain/CustomerFirstName";
 import {CustomerLastName} from "../../../core/customer/domain/CustomerLastName";
 import {CustomerPhoneNumber} from "../../../core/customer/domain/CustomerPhoneNumber";
@@ -12,19 +12,19 @@ export class CustomerPostController {
 
     run(body: Body): Promise<void> {
         const customerId = new CustomerId(body.customerId);
-        const idNumber = new CustomerIdNumber(body.idNumber);
+        const personalNumber = new CustomerPersonalNumber(body.personalNumber);
         const firstName = new CustomerFirstName(body.firstName);
         const lastName = new CustomerLastName(body.lastName);
         const phoneNumber = new CustomerPhoneNumber(body.phoneNumber);
 
-        return this.createCustomer.execute(customerId, idNumber, firstName, lastName, phoneNumber)
+        return this.createCustomer.execute(customerId, personalNumber, firstName, lastName, phoneNumber)
     }
 
 }
 
 export type Body = {
     customerId: string,
-    idNumber: string,
+    personalNumber: string,
     firstName: string,
     lastName: string,
     phoneNumber: string
