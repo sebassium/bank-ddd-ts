@@ -1,6 +1,6 @@
 import express from 'express';
 import provider from "./provider";
-import apiRoutes from "./api/routes/Routes";
+import apiRoutes from "./routes/Routes";
 
 const app = express();
 
