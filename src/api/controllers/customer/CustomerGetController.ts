@@ -2,19 +2,17 @@ import {Request, Response} from "express";
 import {GetCustomerData} from "../../../core/customer/application/GetCustomerData";
 import {CustomerId} from "../../../core/customer/domain/CustomerId";
 
-export class CustomerGetController {
+type Body = {
+    customerId: string
+}
 
+export class CustomerGetController {
     constructor(private getCustomerData: GetCustomerData) {}
 
     run(body: Body) {
         const customerId = new CustomerId(body.customerId);
         return this.getCustomerData.execute(customerId);
     }
-
-}
-
-export type Body = {
-    customerId: string
 }
 
 const get = async ({ customerGetController, body}: Request, res: Response) => {
@@ -24,7 +22,6 @@ const get = async ({ customerGetController, body}: Request, res: Response) => {
     } catch (e) {
         res.status(500).send(e.message)
     }
-
 };
 
 export default get;

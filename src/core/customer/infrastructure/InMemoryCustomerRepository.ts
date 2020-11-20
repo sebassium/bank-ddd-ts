@@ -1,6 +1,6 @@
 import {CustomerRepository} from "../domain/CustomerRepository";
-import {Customer} from "../domain/Customer";
 import {CustomerId} from "../domain/CustomerId";
+import {Customer} from "../domain/Customer";
 
 export class InMemoryCustomerRepository implements CustomerRepository {
 

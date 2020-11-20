@@ -11,6 +11,7 @@ export class GetCustomerData {
 
     async execute(customerId: CustomerId): Promise<CustomerData> {
         const customer = await this._customerRepository.findById(customerId);
+
         return {
             customerId: customer.customerId.value,
             personalNumber: customer.personalNumber.value,

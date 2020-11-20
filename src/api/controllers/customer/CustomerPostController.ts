@@ -6,8 +6,15 @@ import {CustomerFirstName} from "../../../core/customer/domain/CustomerFirstName
 import {CustomerLastName} from "../../../core/customer/domain/CustomerLastName";
 import {CustomerPhoneNumber} from "../../../core/customer/domain/CustomerPhoneNumber";
 
-export class CustomerPostController {
+type Body = {
+    customerId: string,
+    personalNumber: string,
+    firstName: string,
+    lastName: string,
+    phoneNumber: string
+}
 
+export class CustomerPostController {
     constructor(private createCustomer: CreateCustomer) {}
 
     run(body: Body): Promise<void> {
@@ -19,27 +26,15 @@ export class CustomerPostController {
 
         return this.createCustomer.execute(customerId, personalNumber, firstName, lastName, phoneNumber)
     }
-
 }
-
-export type Body = {
-    customerId: string,
-    personalNumber: string,
-    firstName: string,
-    lastName: string,
-    phoneNumber: string
-}
-
-
 
 const create = async ({ customerPostController, body }: Request, res: Response) => {
     try {
         const result = await customerPostController.run(body);
         res.status(200).json(result);
     } catch (e) {
-        res.status(500).send('Server error')
+        res.status(500).send(e.message)
     }
-
 };
 
 export default create;

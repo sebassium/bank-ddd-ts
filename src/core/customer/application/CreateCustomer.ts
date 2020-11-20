@@ -14,7 +14,7 @@ export class CreateCustomer {
         this._customerRepository = customerRepository;
     }
 
-    async execute(customerId: CustomerId, personalNumber: CustomerPersonalNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber) {
+    async execute(customerId: CustomerId, personalNumber: CustomerPersonalNumber, firstName: CustomerFirstName, lastName: CustomerLastName, phoneNumber: CustomerPhoneNumber): Promise<void> {
         const customer = Customer.create(customerId, personalNumber, firstName, lastName, phoneNumber);
         await this._customerRepository.save(customer);
     }

@@ -1,8 +1,8 @@
 import express from "express";
-import { customerRoutes } from "../routes/customer/CustomerRoutes"
+import customerRoutes from "./customer/CustomerRoutes";
 
-const app = express();
+const apiRoutes = express();
 
-app.use('/customer', customerRoutes);
+apiRoutes.use('/customer', customerRoutes);
 
-export { app as apiRoutes };
+export default apiRoutes;

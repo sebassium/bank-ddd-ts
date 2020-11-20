@@ -2,9 +2,9 @@ import express from "express";
 import create from "../../controllers/customer/CustomerPostController";
 import get from "../../controllers/customer/CustomerGetController";
 
-const router = express.Router()
+const customerRoutes = express.Router()
 
-router.post('/', create)
-router.get('/', get)
+customerRoutes.post('/', create)
+customerRoutes.get('/', get)
 
-export { router as customerRoutes };
+export default customerRoutes;
